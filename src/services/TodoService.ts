@@ -7,11 +7,11 @@ type BODY_TYPE = CreateTodoInput | UpdateTodoInput;
 
 const createFetchOptions = (
   method: HTTP_METHOD_TYPE,
-  body: BODY_TYPE
+  body?: BODY_TYPE
 ): RequestInit => {
   return {
     method,
-    body: JSON.stringify(body),
+    body: body ? JSON.stringify(body) : null,
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json',
@@ -42,6 +42,14 @@ export const updateTodoById = async (
 ): Promise<Todo> => {
   const url = API_END_POINT + '/' + id;
   const response = await fetch(url, createFetchOptions('PATCH', input));
+  const todo: Todo = await response.json();
+
+  return todo;
+};
+
+export const removeTodoById = async (id: number): Promise<Todo> => {
+  const url = API_END_POINT + '/' + id;
+  const response = await fetch(url, createFetchOptions('DELETE'));
   const todo: Todo = await response.json();
 
   return todo;

@@ -4,6 +4,7 @@ import {
   fetchAllTodos as fetchAllTodosWithService,
   createTodo as createTodoWithService,
   updateTodoById as updateTodoByIdWithService,
+  removeTodoById as removeTodoByIdWithService,
 } from 'src/services/TodoService';
 
 type TodoContextType = {
@@ -46,7 +47,11 @@ export const TodoContextProvider: FC = ({ children }) => {
     });
     setTodos(newTodos);
   };
-  const removeTodoById = async (id: number) => {};
+  const removeTodoById = async (id: number) => {
+    const removedTodo = await removeTodoByIdWithService(id);
+    const newTodos = todos.filter((todo) => todo.id !== removedTodo.id);
+    setTodos(newTodos);
+  };
 
   return (
     <TodoContext.Provider
