@@ -18,9 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto">
-        <TodoList todos={todos} />
-      </main>
+      <TodoList todos={todos} />
     </div>
   );
 }
