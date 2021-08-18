@@ -3,3 +3,10 @@ export type Todo = {
   title: string;
   body: string;
 };
+
+export type CreateTodoInput = {
+  title: string;
+  body: string;
+};
+
+export type UpdateTodoInput = Partial<CreateTodoInput>;

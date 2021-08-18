@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import Head from 'next/head';
 import { TodoList } from 'src/components/TodoList';
 import { TodoContext } from 'src/contexts/TodoContext';
+import { TodoCreateInput } from 'src/components/TodoCreateInput';
 
 export default function Home() {
   const { todos, fetchAllTodos } = useContext(TodoContext);
@@ -18,6 +19,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <TodoCreateInput />
       <TodoList todos={todos} />
     </div>
   );
