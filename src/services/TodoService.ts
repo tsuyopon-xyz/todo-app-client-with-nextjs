@@ -35,3 +35,14 @@ export const createTodo = async (input: CreateTodoInput): Promise<Todo> => {
 
   return todo;
 };
+
+export const updateTodoById = async (
+  id: number,
+  input: UpdateTodoInput
+): Promise<Todo> => {
+  const url = API_END_POINT + '/' + id;
+  const response = await fetch(url, createFetchOptions('PATCH', input));
+  const todo: Todo = await response.json();
+
+  return todo;
+};

@@ -3,6 +3,7 @@ import type { Todo, CreateTodoInput, UpdateTodoInput } from 'src/types/Todo';
 import {
   fetchAllTodos as fetchAllTodosWithService,
   createTodo as createTodoWithService,
+  updateTodoById as updateTodoByIdWithService,
 } from 'src/services/TodoService';
 
 type TodoContextType = {
@@ -34,7 +35,17 @@ export const TodoContextProvider: FC = ({ children }) => {
     setTodos(newTodos);
   };
 
-  const updateTodoById = async (id: number, data: UpdateTodoInput) => {};
+  const updateTodoById = async (id: number, data: UpdateTodoInput) => {
+    const updatedTodo = await updateTodoByIdWithService(id, data);
+    const newTodos = todos.map((todo) => {
+      if (updatedTodo.id === todo.id) {
+        return updatedTodo;
+      }
+
+      return todo;
+    });
+    setTodos(newTodos);
+  };
   const removeTodoById = async (id: number) => {};
 
   return (
