@@ -33,7 +33,7 @@ export const TodoCreateInput: VFC = () => {
         title: trimmedTitle,
         body: trimmedBody,
       });
-      setIsOpen(false);
+      closeModal();
     } catch (error) {
       console.error(error);
     }

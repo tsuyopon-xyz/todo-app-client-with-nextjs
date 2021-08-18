@@ -19,7 +19,7 @@ export const TodoListItem: VFC<Props> = ({ todo }) => {
         </p>
         <p className="text-sm text-gray-500">{todo.body}</p>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mr-2 md:mr-0">
         <TodoUpdateInput todo={todo} />
         <Button
           text="削除"
